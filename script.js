@@ -6,67 +6,80 @@ const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
     {
-        enunciado: "Você acabou de ler um artigo sobre a crescente ameaça da mudança climática. Qual é a sua primeira reação?",
+        enunciado: "Você descobre que o planeta está enfrentando uma crise ambiental grave e precisa tomar uma decisão importante. Qual é o seu primeiro pensamento?",
         alternativas: [
             {
-                texto: "Fico preocupado com o futuro do planeta.",
-                afirmacao: "afirmação"
+                texto: "Isso é preocupante e precisamos agir imediatamente!",
+                afirmacao: "Você decidiu se envolver em projetos e iniciativas para ajudar o meio ambiente."
             },
             {
-                texto: "Acredito que ainda podemos reverter a situação.",
-                afirmacao: "afirmação"
+                texto: "É uma situação difícil, mas talvez possamos encontrar soluções tecnológicas.",
+                afirmacao: "Você começou a pesquisar e apoiar o desenvolvimento de novas tecnologias para mitigar os impactos ambientais."
             }
         ]
     },
     {
-        enunciado: "Na escola, o professor de ciências propõe uma atividade para criar um projeto que ajude a reduzir o desperdício de água na comunidade. Como você decide contribuir?",
+        enunciado: "Com o avanço das tecnologias sustentáveis, uma escola oferece um curso sobre como utilizar essas tecnologias para preservar o planeta. O que você faz?",
         alternativas: [
             {
-                texto: "Sugiro instalar sensores de vazamento de água nas casas para reduzir o desperdício.",
-                afirmacao: "afirmação"
+                texto: "Participa ativamente do curso para aprender e implementar soluções sustentáveis.",
+                afirmacao: "Você se torna um defensor de práticas ecológicas e ajuda a educar outros sobre a importância da sustentabilidade."
             },
             {
-                texto: "Proponho uma campanha de conscientização para incentivar o uso responsável da água.",
-                afirmacao: "afirmação"
+                texto: "Opta por buscar informações por conta própria e aplicar essas tecnologias em seus projetos pessoais.",
+                afirmacao: "Você consegue aplicar as tecnologias sustentáveis em suas atividades diárias e inspira outros a fazer o mesmo."
             }
         ]
     },
     {
-        enunciado: "Após apresentar seu projeto, o professor abre uma discussão sobre o impacto do desmatamento nas mudanças climáticas. Qual é a sua posição?",
+        enunciado: "Durante um debate sobre o futuro do planeta, o impacto das ações humanas é discutido. Qual é a sua opinião sobre a responsabilidade individual na proteção ambiental?",
         alternativas: [
             {
-                texto: "Acredito que precisamos de mais áreas protegidas e reflorestamento para combater o desmatamento.",
-                afirmacao: "afirmação"
+                texto: "Acredito que cada pessoa tem um papel crucial em preservar o planeta e deve adotar práticas sustentáveis.",
+                afirmacao: "Você participa de campanhas de conscientização e promove a mudança de comportamento em sua comunidade."
             },
             {
-                texto: "Defendo que devemos encontrar um equilíbrio entre desenvolvimento econômico e preservação ambiental.",
-                afirmacao: "afirmação"
+                texto: "A responsabilidade é principalmente das grandes empresas e governos, e eles devem liderar as ações.",
+                afirmacao: "Você se engaja em iniciativas que pressionam as instituições a tomar medidas mais eficazes para proteger o meio ambiente."
             }
         ]
     },
     {
-        enunciado: "Para finalizar o projeto, seu grupo deve criar uma campanha visual para promover práticas sustentáveis na escola. O que você sugere?",
+        enunciado: "Você precisa criar uma campanha para sensibilizar as pessoas sobre a importância da preservação ambiental. Como você procede?",
         alternativas: [
             {
-                texto: "Criar cartazes usando materiais reciclados e distribuí-los pela escola.",
-                afirmacao: "afirmação"
+                texto: "Cria materiais educativos usando plataformas digitais e redes sociais para alcançar um público amplo.",
+                afirmacao: "Sua campanha foi bem-sucedida em aumentar a conscientização e engajar pessoas na preservação ambiental."
             },
             {
-                texto: "Produzir um vídeo educativo utilizando animação digital para explicar os benefícios da sustentabilidade.",
-                afirmacao: "afirmação"
+                texto: "Organiza eventos locais e workshops para educar diretamente a comunidade sobre práticas sustentáveis.",
+                afirmacao: "Os eventos ajudaram a promover mudanças de comportamento em nível local e fortaleceram o compromisso com o meio ambiente."
             }
         ]
     },
     {
-        enunciado: "O grupo de trabalho está discutindo sobre o uso de energia renovável e um colega sugere que cada casa deve ter painéis solares, mas o custo é um problema. Como você responde?",
+        enunciado: "Você está colaborando em um projeto de recuperação de áreas degradadas e enfrenta dificuldades. O que faz?",
         alternativas: [
             {
-                texto: "Concordo que é caro, mas acho que o investimento a longo prazo vale a pena.",
-                afirmacao: "afirmação"
+                texto: "Utiliza tecnologias avançadas para monitorar e acelerar a recuperação das áreas.",
+                afirmacao: "Você consegue superar as dificuldades e melhorar os resultados do projeto com a ajuda da tecnologia."
             },
             {
-                texto: "Sugiro procurar alternativas mais acessíveis, como programas de incentivo governamental.",
-                afirmacao: "afirmação"
+                texto: "Trabalha em conjunto com a comunidade para buscar soluções práticas e sustentáveis.",
+                afirmacao: "A colaboração com a comunidade trouxe novas ideias e soluções eficazes para o projeto de recuperação."
+            }
+        ]
+    },
+    {
+        enunciado: "Seu grupo de estudo está finalizando um relatório sobre o futuro do planeta. Descobre que uma parte do relatório foi copiada de uma fonte sem revisão. O que você faz?",
+        alternativas: [
+            {
+                texto: "Decide aceitar o relatório como está, pois o importante é o conteúdo final.",
+                afirmacao: "Você percebeu que isso afetou a qualidade do trabalho e decidiu não mais depender apenas de fontes externas."
+            },
+            {
+                texto: "Revisa o relatório cuidadosamente e faz as correções necessárias para garantir a integridade do trabalho.",
+                afirmacao: "Você aprendeu a importância de verificar e validar as informações antes de apresentar um trabalho final."
             }
         ]
     },
@@ -74,22 +87,39 @@ const perguntas = [
 
 let atual = 0;
 let perguntaAtual;
+let historiaFinal = "";
 
 function mostraPergunta() {
+    if (atual >= perguntas.length) {
+        mostraResultado();
+        return;
+    }
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
-function mostraAlternativas() {
-    for (const alternativa of perguntaAtual.alternativas) {
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener("click", function () {
-            atual++;
-            mostraPergunta();
-        })
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
+
+function respostaSelecionada(opcaoSelecionada) {
+    const afirmacoes = opcaoSelecionada.afirmacao;
+    historiaFinal += afirmacoes + " ";
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado() {
+    caixaPerguntas.textContent = "Em 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent = "";
+}
+
 mostraPergunta();
